@@ -1,0 +1,16 @@
+.container {
+  width: 90%;
+  margin: 0 auto;
+
+  background-color: lightgray;
+
+  font-family: 'Akshar', sans-serif;
+
+}
+
+.boards {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  background-color: gray;
+}

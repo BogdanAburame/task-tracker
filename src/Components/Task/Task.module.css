@@ -1,0 +1,16 @@
+p {
+  padding: 0 0 0 5px;
+  margin: 2px;
+}
+
+.name {
+  font-size: 20px;
+  border-bottom: 1px solid darkgray;
+  border-radius: 2px;
+  /* margin-bottom: 5px; */
+}
+
+.name:hover {
+  background-color: darkgray;
+  transition: .5s;
+}
