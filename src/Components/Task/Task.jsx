@@ -3,7 +3,8 @@ import styles from './Task.module.css'
 const Task = (props) => {
   return ( 
     <div className={styles.name}>
-      <p>Task name</p>
+      <div>{props.taskText}</div>
+      
     </div>
    );
 }
