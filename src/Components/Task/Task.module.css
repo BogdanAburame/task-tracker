@@ -3,11 +3,15 @@ p {
   margin: 2px;
 }
 
+.taskTextBlock {
+  padding-left: 5px;
+}
+
 .name {
   display: flex;
   justify-content: space-between;
   font-size: 20px;
-  border-bottom: 1px solid darkgray;
+  border: 1px solid darkgray;
   border-radius: 2px;
   /* margin-bottom: 5px; */
 }
@@ -15,4 +19,28 @@ p {
 .name:hover {
   background-color: darkgray;
   transition: .5s;
+}
+
+.actionButtons {
+  display: flex;
+  gap: 5px;
+}
+
+.taskInputBlock {
+  display: flex;
+  justify-content: space-between;
+}
+
+.taskInputBlock input {
+  padding: 0;
+  padding-left: 5px;
+  border: 1px solid darkgray;
+
+  font-size: 20px;
+  width: 78%;
+  font-family: 'Akshar', sans-serif;
+}
+
+.taskInputBlock button {
+  width: 20%;
 }

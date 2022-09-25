@@ -22,27 +22,75 @@ const taskSlice = createSlice({
       state.newTaskText = action.payload
     },
     changeStatusTaskToNext: (state, action) => {
-      if (action.payload.status === 'start') {
-        state.startTasks.map(t => {
-          if (t.id === action.payload.id) {
-            state.inProgressTasks.push(t)
-          }
-        })
-        state.startTasks.splice(state.startTasks.findIndex(t => t.id === action.payload.id), 1)
+      switch (action.payload.status) {
+        case 'start':
+          changeStatusTask(state.startTasks, state.inProgressTasks, action)
+          break;
+        case 'in progress':
+          changeStatusTask(state.inProgressTasks, state.finishTasks, action)
+          break
+        default:
+          break;
       }
-      if (action.payload.status === 'in progress') {
-        state.inProgressTasks.map(t => {
-          if (t.id === action.payload.id) {
-            state.finishTasks.push(t)
-          }
-        })
-        state.inProgressTasks.splice(state.inProgressTasks.findIndex(t => t.id === action.payload.id), 1)
+    },
+    deleteTask: (state, action) => {
+      switch (action.payload.status) {
+        case 'start':
+          state.startTasks.splice(state.startTasks.findIndex(t => t.id === action.payload.id), 1)
+          break;
+        case 'in progress':
+          state.inProgressTasks.splice(state.inProgressTasks.findIndex(t => t.id === action.payload.id), 1)
+          break;
+        case 'finish':
+          state.finishTasks.splice(state.finishTasks.findIndex(t => t.id === action.payload.id), 1)
+          break;
+        default:
+          break;
+      }
+    },
+    editTextTask: (state, action) => {
+      switch (action.payload.status) {
+        case 'start':
+          state.startTasks.map(t => {
+            if (t.id === action.payload.id) {
+              t.taskText = action.payload.newTaskText
+            } 
+          })
+          break;
+        case 'in progress':
+          state.inProgressTasks.map(t => {
+            if (t.id === action.payload.id) {
+              t.taskText = action.payload.newTaskText
+            } 
+          })
+          break;
+        case 'finish':
+          state.finishTasks.map(t => {
+            if (t.id === action.payload.id) {
+              t.taskText = action.payload.newTaskText
+            } 
+          })
+          break;
+        default:
+          break;
       }
     }
   }
 })
 
-export const { createTask, changeNewTaskText, changeStatusTaskToNext } = taskSlice.actions
+
+// Функция помощник, помогает избежать дублирования кода
+
+const changeStatusTask = (prevState, nextState, action) => {
+  prevState.map(t => {
+    if (t.id === action.payload.id) {
+      nextState.push(t)
+    }
+  })
+  prevState.splice(prevState.findIndex(t => t.id === action.payload.id), 1)
+}
+
+export const { createTask, changeNewTaskText, changeStatusTaskToNext, deleteTask, editTextTask } = taskSlice.actions
 
 export const store = configureStore({
   reducer: taskSlice.reducer
