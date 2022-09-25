@@ -5,10 +5,9 @@ import {useSelector} from 'react-redux'
 
 function App() {
 
-  const tasksFromState = useSelector(state => state.tasks) 
-  const startTasks = tasksFromState.filter(task => task.status === "start")
-  const inProgressTasks = tasksFromState.filter(task => task.status === "in progress")
-  const finishTasks = tasksFromState.filter(task => task.status === "finish")
+  const startTasks = useSelector(state => state.startTasks)
+  const inProgressTasks = useSelector(state => state.inProgressTasks)
+  const finishTasks = useSelector(state => state.finishTasks)
 
   return (
     <div className={styles.container}>

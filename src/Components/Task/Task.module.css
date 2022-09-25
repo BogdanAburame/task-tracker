@@ -4,6 +4,8 @@ p {
 }
 
 .name {
+  display: flex;
+  justify-content: space-between;
   font-size: 20px;
   border-bottom: 1px solid darkgray;
   border-radius: 2px;

@@ -9,7 +9,7 @@ const Board = ({title, tasks, ...props}) => {
       <div className={styles.title}>{title.toUpperCase()}</div>
       <div className={styles.content}>
         {tasks && tasks.map(task => {
-          return <Task taskText={task.taskText} key={task.id}/>
+          return <Task taskText={task.taskText} key={task.id} id={task.id} title={title}/>
 
         })}
       </div>
